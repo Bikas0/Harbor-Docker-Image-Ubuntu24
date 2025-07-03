@@ -42,7 +42,7 @@
 
    sudo nano harbor.yml
 
-   hostname: <your-server-ip-or-domain>
+   hostname: <your-server-ip-or-domain>  or <can-be-local-pc-ip-add>
 
    harbor_admin_password: strongpassword
 
