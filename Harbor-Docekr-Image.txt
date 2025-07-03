@@ -1,0 +1,65 @@
+===== Prerequisites  ==== 
+
+1. Update the system:
+
+   sudo apt update 
+
+2. Install Docker and Docker Compose:
+
+     sudo apt install docker.io docker-compose -y
+
+3. Start and enable Docker:
+
+     sudo systemctl start docker
+     sudo systemctl enable docker
+
+4. Install unzip and curl:
+
+    sudo apt install unzip curl -y
+
+===========  Download Harbor =========
+
+1.Download the Harbor installer:
+
+    wget https://github.com/goharbor/harbor/releases/download/v2.8.2/harbor-online-installer-v2.8.2.tgz
+
+2. Extract the installer:
+
+     tar xzvf harbor-online-installer-v2.8.2.tgz
+     cd harbor
+
+====== Configure Harbor ====
+
+ 1. Edit the Harbor configuration file:
+
+ cp harbor.yml.tmpl harbor.yml
+
+2. Generate or Obtain SSL Certificates:
+
+   mkdir -p /data/cert
+   openssl req -newkey rsa:2048 -nodes -keyout /data/cert/server.key -x509 -days 365 -out /data/cert/server.crt
+
+
+   sudo nano harbor.yml
+
+   hostname: <your-server-ip-or-domain>
+
+   harbor_admin_password: strongpassword
+
+
+https:
+  port: 443
+  ssl_cert: /data/cert/server.crt
+  ssl_cert_key: /data/cert/server.key
+
+
+
+==
+sudo ./install.sh
+sudo docker ps
+
+======
+
+
+
+
